@@ -27,15 +27,16 @@ class ActividadesController extends Controller
                                 ->get(); */
         $sql = "select * from actividades  where ('".$request->fecha."'  >= fecha_desde and '".$request->fecha."' <= fecha_hasta)";
         $actividades = DB::select($sql);
-        return view('actividades.resultados')->with([
+        /* return view('actividades.resultados')->with([
             'actividades' => $actividades, 
             'fecha' => $request->fecha,
             'cantidad'    => $request->cantidad_personas,
-            ]);
+            ]); */        
+        return $actividades;
     }
 
     public function reservar(Request $request){
-        
+
         $reserva = new Reserva();
         $reserva->actividad_id = $request->id;
         $reserva->cantidad_personas = $request->cantidad;
@@ -43,9 +44,11 @@ class ActividadesController extends Controller
         $reserva->fecha_reserva = date('Y-m-d h:i:s');
         $reserva->fecha_actividad = $request->fecha;
         $reserva->save();
+    
+        return Reserva::with('actividades')->where('id',$reserva->id)->first();
 
-        return view('actividades.reserva')->with([
-            'reserva' => $reserva]);
+        /* return view('actividades.reserva')->with([
+            'reserva' => $reserva]); */
     }
 
 }

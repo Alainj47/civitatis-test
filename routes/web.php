@@ -20,4 +20,5 @@ Route::get('/', function () {
 
 Route::get('actividades', 'ActividadesController@index')->name('actividades');
 Route::post('buscar', 'ActividadesController@search')->name('buscar');
-Route::get('comprar', 'ActividadesController@reservar')->name('comprar');
+Route::post('comprar', 'ActividadesController@reservar')->name('comprar');
+Route::get('actividades_get', 'ActividadesController@showall')->name('actividades_get');
