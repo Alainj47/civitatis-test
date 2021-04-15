@@ -2,7 +2,7 @@
 
 ## Autor: Alain Bonilla
 
-### Proyecto realizado en Laravel 5.7
+### Proyecto realizado en Laravel 7
 
 > Instrucciones:
 
